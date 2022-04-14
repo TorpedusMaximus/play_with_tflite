@@ -1,0 +1,2 @@
+/usr/bin/ar qc libImageProcessor.a CMakeFiles/ImageProcessor.dir/image_processor.cpp.o CMakeFiles/ImageProcessor.dir/pose_engine.cpp.o
+/usr/bin/ranlib libImageProcessor.a

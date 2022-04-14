@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "image_processor/inference_helper",
+		"source" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/inference_helper"
+	}
+}

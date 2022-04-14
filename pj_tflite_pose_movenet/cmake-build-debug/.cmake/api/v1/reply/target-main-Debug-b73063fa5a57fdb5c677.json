@@ -1,0 +1,345 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "main"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"add_definitions",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-Wall -fopenmp -g3 -O0"
+				},
+				{
+					"fragment" : "-std=gnu++14"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 4,
+					"define" : "RESOURCE_DIR=\"/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug/resource/\""
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/./image_processor"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/image_processor/../../common_helper"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/image_processor/../../InferenceHelper/inference_helper"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tensorflow"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tensorflow_deps/abseil-cpp"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tensorflow_deps/flatbuffers/include"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/local/include/opencv4"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "14"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "ImageProcessor::@ca64771042b81ddf7121"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "CommonHelper::@b8b6d4e0f9ad4416e513"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "InferenceHelper::@0e991b87d4af00af6320"
+		}
+	],
+	"id" : "main::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wall -fopenmp -g3 -O0",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-rdynamic",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/usr/local/lib:/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tflite_prebuilt/ubuntu",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "image_processor/libImageProcessor.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_gapi.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_highgui.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_ml.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_objdetect.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_photo.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_stitching.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_video.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_videoio.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "image_processor/common_helper/libCommonHelper.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_gapi.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_highgui.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_ml.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_objdetect.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_photo.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_stitching.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_video.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_calib3d.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_dnn.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_features2d.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_flann.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_videoio.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_imgcodecs.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_imgproc.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/local/lib/libopencv_core.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "image_processor/inference_helper/libInferenceHelper.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tflite_prebuilt/ubuntu/libtensorflowlite.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_imgcodecs.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_dnn.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_calib3d.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_features2d.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_flann.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_imgproc.so.4.5.5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/usr/local/lib/libopencv_core.so.4.5.5",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "main",
+	"nameOnDisk" : "main",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

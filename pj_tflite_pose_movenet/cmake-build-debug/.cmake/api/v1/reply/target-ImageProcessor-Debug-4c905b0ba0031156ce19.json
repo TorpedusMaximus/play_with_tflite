@@ -1,0 +1,191 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "image_processor/libImageProcessor.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"image_processor/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 23,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-Wall -fopenmp -g3 -O0"
+				},
+				{
+					"fragment" : "-std=gnu++14"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/image_processor/../../common_helper"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/image_processor/../../InferenceHelper/inference_helper"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tensorflow"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tensorflow_deps/abseil-cpp"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/third_party/cmakes/../tensorflow_deps/flatbuffers/include"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/local/include/opencv4"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					7
+				],
+				"standard" : "14"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				2
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "CommonHelper::@b8b6d4e0f9ad4416e513"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "InferenceHelper::@0e991b87d4af00af6320"
+		}
+	],
+	"id" : "ImageProcessor::@ca64771042b81ddf7121",
+	"name" : "ImageProcessor",
+	"nameOnDisk" : "libImageProcessor.a",
+	"paths" : 
+	{
+		"build" : "image_processor",
+		"source" : "image_processor"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				2
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1,
+				3
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "image_processor/image_processor.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "image_processor/image_processor.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "image_processor/pose_engine.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "image_processor/pose_engine.h",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

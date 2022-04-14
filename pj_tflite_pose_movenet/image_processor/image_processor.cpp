@@ -1,35 +1,12 @@
-/* Copyright 2021 iwatake2222
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-==============================================================================*/
-/*** Include ***/
-/* for general */
 #include <cstdint>
 #include <cstdlib>
 #include <cmath>
 #include <cstring>
+#include <memory>
 #include <string>
 #include <vector>
-#include <array>
-#include <algorithm>
 #include <chrono>
-#include <fstream>
-#include <memory>
-
-/* for OpenCV */
 #include <opencv2/opencv.hpp>
-
-/* for My modules */
 #include "common_helper.h"
 #include "common_helper_cv.h"
 #include "pose_engine.h"
@@ -44,8 +21,8 @@ limitations under the License.
 std::unique_ptr<PoseEngine> s_engine;
 
 /*** Function ***/
-static void DrawFps(cv::Mat& mat, double time_inference, cv::Point pos, double font_scale, int32_t thickness, cv::Scalar color_front, cv::Scalar color_back, bool is_text_on_rect = true)
-{
+static void
+DrawFps(cv::Mat &mat, double time_inference, cv::Point pos){
     char text[64];
     static auto time_previous = std::chrono::steady_clock::now();
     auto time_now = std::chrono::steady_clock::now();
@@ -56,14 +33,13 @@ static void DrawFps(cv::Mat& mat, double time_inference, cv::Point pos, double f
 }
 
 
-int32_t ImageProcessor::Initialize(const ImageProcessor::InputParam& input_param)
-{
+int32_t ImageProcessor::Initialize(const ImageProcessor::InputParam& input_param){
     if (s_engine) {
         PRINT_E("Already initialized\n");
         return -1;
     }
 
-    s_engine.reset(new PoseEngine());
+    s_engine = std::make_unique<PoseEngine>();
     if (s_engine->Initialize(input_param.work_dir, input_param.num_threads) != PoseEngine::kRetOk) {
         s_engine->Finalize();
         s_engine.reset();
@@ -72,8 +48,7 @@ int32_t ImageProcessor::Initialize(const ImageProcessor::InputParam& input_param
     return 0;
 }
 
-int32_t ImageProcessor::Finalize(void)
-{
+int32_t ImageProcessor::Finalize(){
     if (!s_engine) {
         PRINT_E("Not initialized\n");
         return -1;
@@ -87,8 +62,7 @@ int32_t ImageProcessor::Finalize(void)
 }
 
 
-int32_t ImageProcessor::Command(int32_t cmd)
-{
+int32_t ImageProcessor::Command(int32_t cmd){
     if (!s_engine) {
         PRINT_E("Not initialized\n");
         return -1;
@@ -127,8 +101,7 @@ static const std::vector<std::pair<int32_t, int32_t>> kJointLineList {
 
 static constexpr float kThresholdScoreKeyPoint = 0.2f;
 
-int32_t ImageProcessor::Process(cv::Mat& mat, ImageProcessor::Result& result)
-{
+int32_t ImageProcessor::Process(cv::Mat& mat, ImageProcessor::Result& result){
     if (!s_engine) {
         PRINT_E("Not initialized\n");
         return -1;
@@ -138,6 +111,8 @@ int32_t ImageProcessor::Process(cv::Mat& mat, ImageProcessor::Result& result)
     if (s_engine->Process(mat, pose_result) != PoseEngine::kRetOk) {
         return -1;
     }
+
+
 
     /* Display target area  */
     cv::rectangle(mat, cv::Rect(pose_result.crop.x, pose_result.crop.y, pose_result.crop.w, pose_result.crop.h), CommonHelper::CreateCvColor(0, 0, 0), 2);
@@ -163,16 +138,13 @@ int32_t ImageProcessor::Process(cv::Mat& mat, ImageProcessor::Result& result)
             if (keypoint_score[j] >= kThresholdScoreKeyPoint) {
                 const auto& p = keypoint[j];
                 cv::circle(mat, cv::Point(p.first, p.second), 2, CommonHelper::CreateCvColor(0, 255, 0));
-            }
-        }
+            }        }
     }
 
 
-    DrawFps(mat, pose_result.time_inference, cv::Point(0, 0), 0.5, 2, CommonHelper::CreateCvColor(0, 0, 0), CommonHelper::CreateCvColor(180, 180, 180), true);
-
-    result.time_pre_process = pose_result.time_pre_process;
+    DrawFps(mat, pose_result.time_inference, cv::Point(0, 0));
     result.time_inference = pose_result.time_inference;
-    result.time_post_process = pose_result.time_post_process;
+
 
     return 0;
 }

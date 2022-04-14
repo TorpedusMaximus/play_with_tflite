@@ -1,0 +1,141 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "image_processor",
+					"childIndexes" : 
+					[
+						2,
+						3
+					],
+					"jsonFile" : "directory-image_processor-Debug-766defb4f3403cec5665.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "image_processor",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "image_processor/common_helper",
+					"jsonFile" : "directory-image_processor.common_helper-Debug-83b7bf190f0706015422.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "/home/tabaluga/CLionProjects/play_with_tflite/common_helper",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "image_processor/inference_helper",
+					"jsonFile" : "directory-image_processor.inference_helper-Debug-448bf6478d01c1824b2c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "/home/tabaluga/CLionProjects/play_with_tflite/InferenceHelper/inference_helper",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"name" : "main",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "CommonHelper::@b8b6d4e0f9ad4416e513",
+					"jsonFile" : "target-CommonHelper-Debug-894a8ee40655cc30102a.json",
+					"name" : "CommonHelper",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ImageProcessor::@ca64771042b81ddf7121",
+					"jsonFile" : "target-ImageProcessor-Debug-4c905b0ba0031156ce19.json",
+					"name" : "ImageProcessor",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "InferenceHelper::@0e991b87d4af00af6320",
+					"jsonFile" : "target-InferenceHelper-Debug-b61de0b93e547f0e7ab1.json",
+					"name" : "InferenceHelper",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main-Debug-b73063fa5a57fdb5c677.json",
+					"name" : "main",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug",
+		"source" : "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

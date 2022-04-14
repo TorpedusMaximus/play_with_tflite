@@ -1,34 +1,9 @@
-/* Copyright 2021 iwatake2222
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-==============================================================================*/
-/*** Include ***/
-/* for general */
 #include <cstdint>
-#include <cstdlib>
-#include <cmath>
 #include <cstring>
 #include <string>
 #include <vector>
-#include <array>
-#include <algorithm>
 #include <chrono>
-#include <fstream>
-
-/* for OpenCV */
 #include <opencv2/opencv.hpp>
-
-/* for My modules */
 #include "common_helper.h"
 #include "common_helper_cv.h"
 #include "inference_helper.h"
@@ -61,8 +36,7 @@ limitations under the License.
 #endif
 
 /*** Function ***/
-int32_t PoseEngine::Initialize(const std::string& work_dir, const int32_t num_threads)
-{
+int32_t PoseEngine::Initialize(const std::string& work_dir, const int32_t num_threads){
     /* Set model information */
     std::string model_filename = work_dir + "/model/" + MODEL_NAME;
 
@@ -71,7 +45,6 @@ int32_t PoseEngine::Initialize(const std::string& work_dir, const int32_t num_th
     InputTensorInfo input_tensor_info(INPUT_NAME, TENSORTYPE, IS_NCHW);
     input_tensor_info.tensor_dims = INPUT_DIMS;
     input_tensor_info.data_type = InputTensorInfo::kDataTypeImage;
-    /* 0 - 255 (https://tfhub.dev/google/lite-model/movenet/singlepose/lightning/3) */
     input_tensor_info.normalize.mean[0] = 0;
     input_tensor_info.normalize.mean[1] = 0;
     input_tensor_info.normalize.mean[2] = 0;
@@ -86,10 +59,6 @@ int32_t PoseEngine::Initialize(const std::string& work_dir, const int32_t num_th
 
     /* Create and Initialize Inference Helper */
     inference_helper_.reset(InferenceHelper::Create(InferenceHelper::kTensorflowLite));
-    // inference_helper_.reset(InferenceHelper::Create(InferenceHelper::kTensorflowLiteXnnpack));
-    // inference_helper_.reset(InferenceHelper::Create(InferenceHelper::kTensorflowLiteGpu));
-    // inference_helper_.reset(InferenceHelper::Create(InferenceHelper::kTensorflowLiteEdgetpu));
-    // inference_helper_.reset(InferenceHelper::Create(InferenceHelper::kTensorflowLiteNnapi));
 
     if (!inference_helper_) {
         return kRetErr;
@@ -106,8 +75,7 @@ int32_t PoseEngine::Initialize(const std::string& work_dir, const int32_t num_th
     return kRetOk;
 }
 
-int32_t PoseEngine::Finalize()
-{
+int32_t PoseEngine::Finalize(){
     if (!inference_helper_) {
         PRINT_E("Inference helper is not created\n");
         return kRetErr;
@@ -117,8 +85,7 @@ int32_t PoseEngine::Finalize()
 }
 
 
-int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result)
-{
+int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result){
     if (!inference_helper_) {
         PRINT_E("Inference helper is not created\n");
         return kRetErr;
@@ -133,8 +100,6 @@ int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result)
     int32_t crop_w = original_mat.cols;
     int32_t crop_h = original_mat.rows;
     cv::Mat img_src = cv::Mat::zeros(input_tensor_info.GetHeight(), input_tensor_info.GetWidth(), CV_8UC3);
-    //CommonHelper::CropResizeCvt(original_mat, img_src, crop_x, crop_y, crop_w, crop_h, IS_RGB, CommonHelper::kCropTypeStretch);
-    //CommonHelper::CropResizeCvt(original_mat, img_src, crop_x, crop_y, crop_w, crop_h, IS_RGB, CommonHelper::kCropTypeCut);
     CommonHelper::CropResizeCvt(original_mat, img_src, crop_x, crop_y, crop_w, crop_h, IS_RGB, CommonHelper::kCropTypeExpand);
 
     input_tensor_info.data = img_src.data;
@@ -187,9 +152,7 @@ int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result)
     result.crop.y = (std::max)(0, crop_y);
     result.crop.w = (std::min)(crop_w, original_mat.cols - result.crop.x);
     result.crop.h = (std::min)(crop_h, original_mat.rows - result.crop.y);
-    result.time_pre_process = static_cast<std::chrono::duration<double>>(t_pre_process1 - t_pre_process0).count() * 1000.0;
     result.time_inference = static_cast<std::chrono::duration<double>>(t_inference1 - t_inference0).count() * 1000.0;
-    result.time_post_process = static_cast<std::chrono::duration<double>>(t_post_process1 - t_post_process0).count() * 1000.0;;
 
     return kRetOk;
 }

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCommonHelper.a CMakeFiles/CommonHelper.dir/common_helper.cpp.o CMakeFiles/CommonHelper.dir/bounding_box.cpp.o CMakeFiles/CommonHelper.dir/tracker.cpp.o CMakeFiles/CommonHelper.dir/common_helper_cv.cpp.o
+/usr/bin/ranlib libCommonHelper.a
