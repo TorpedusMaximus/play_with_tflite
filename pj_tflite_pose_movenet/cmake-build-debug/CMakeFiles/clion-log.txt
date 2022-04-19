@@ -1,21 +1,10 @@
-/home/tabaluga/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet
--- The C compiler identification is GNU 9.4.0
--- The CXX compiler identification is GNU 9.4.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
+/home/tabaluga/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet -B /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug
 [main] CMAKE_SYSTEM_PROCESSOR = x86_64, BUILD_SYSTEM = x64_linux
--- Found OpenMP_C: -fopenmp (found version "4.5") 
--- Found OpenMP_CXX: -fopenmp (found version "4.5") 
--- Found OpenMP: TRUE (found version "4.5")  
--- Found OpenCV: /usr/local (found version "4.5.5") 
--- Configuring done
--- Generating done
--- Build files have been written to: /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug
+CMake Error at CMakeLists.txt:25 (file):
+  file COPY cannot find
+  "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/../resource":
+  No such file or directory.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug/CMakeFiles/CMakeOutput.log".

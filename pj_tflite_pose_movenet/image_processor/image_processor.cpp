@@ -101,6 +101,14 @@ static const std::vector<std::pair<int32_t, int32_t>> kJointLineList {
 
 static constexpr float kThresholdScoreKeyPoint = 0.2f;
 
+int32_t ImageProcessor::getResult(cv::Mat& mat, PoseEngine::Result& result){
+    if (s_engine->Process(mat, result) != PoseEngine::kRetOk) {
+        return -1;
+    }else{
+        return 1;
+    }
+}
+
 int32_t ImageProcessor::Process(cv::Mat& mat, ImageProcessor::Result& result){
     if (!s_engine) {
         PRINT_E("Not initialized\n");

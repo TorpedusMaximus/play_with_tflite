@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include "pose_engine.h"
 
 namespace cv {
     class Mat;
@@ -29,7 +30,7 @@ int32_t Initialize(const InputParam& input_param);
 int32_t Process(cv::Mat& mat, Result& result);
 int32_t Finalize(void);
 int32_t Command(int32_t cmd);
-
+int32_t getResult(cv::Mat &mat, PoseEngine::Result &result);
 }
 
 #endif
