@@ -15,6 +15,10 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../common_helper common_helper)
 target_include_directories(${LibraryName} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../../common_helper)
 target_link_libraries(${LibraryName} CommonHelper)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(${LibraryName} Threads::Threads)
+
 # For InferenceHelper
 set(INFERENCE_HELPER_DIR ${CMAKE_CURRENT_LIST_DIR}/../../InferenceHelper/)
 set(INFERENCE_HELPER_ENABLE_TFLITE ON CACHE BOOL "TFLITE")

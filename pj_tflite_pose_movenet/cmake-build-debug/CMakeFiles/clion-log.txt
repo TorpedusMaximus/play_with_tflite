@@ -1,10 +1,5 @@
 /home/tabaluga/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet -B /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug
 [main] CMAKE_SYSTEM_PROCESSOR = x86_64, BUILD_SYSTEM = x64_linux
-CMake Error at CMakeLists.txt:25 (file):
-  file COPY cannot find
-  "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/../resource":
-  No such file or directory.
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/tabaluga/CLionProjects/play_with_tflite/pj_tflite_pose_movenet/cmake-build-debug

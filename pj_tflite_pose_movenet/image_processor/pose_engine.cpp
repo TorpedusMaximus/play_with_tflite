@@ -90,8 +90,7 @@ int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result){
         PRINT_E("Inference helper is not created\n");
         return kRetErr;
     }
-    /*** PreProcess ***/
-    const auto& t_pre_process0 = std::chrono::steady_clock::now();
+
     InputTensorInfo& input_tensor_info = input_tensor_info_list_[0];
 
     /* do resize and color conversion here because some inference engine doesn't support these operations */
@@ -117,7 +116,6 @@ int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result){
     if (inference_helper_->PreProcess(input_tensor_info_list_) != InferenceHelper::kRetOk) {
         return kRetErr;
     }
-    const auto& t_pre_process1 = std::chrono::steady_clock::now();
 
     /*** Inference ***/
     const auto& t_inference0 = std::chrono::steady_clock::now();
@@ -125,9 +123,6 @@ int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result){
         return kRetErr;
     }
     const auto& t_inference1 = std::chrono::steady_clock::now();
-
-    /*** PostProcess ***/
-    const auto& t_post_process0 = std::chrono::steady_clock::now();
 
     /* Retrieve the result */
     float* val_float = output_tensor_info_list_[0].GetDataAsFloat();
@@ -143,7 +138,6 @@ int32_t PoseEngine::Process(const cv::Mat& original_mat, Result& result){
     keypoint_list.push_back(keypoint);
     keypoint_score_list.push_back(keypoint_score);
 
-    const auto& t_post_process1 = std::chrono::steady_clock::now();
 
     /* Return the results */
     result.keypoint_list = keypoint_list;
