@@ -9,60 +9,44 @@
 /*** Macro ***/
 #define WORK_DIR                      RESOURCE_DIR
 #define DEFAULT_INPUT_IMAGE           "0"
-#define LOOP_NUM_FOR_TIME_MEASUREMENT 10
 
+cv::Mat image;
 
-void* checkFall(void *test){
+void *checkFall(void *test) {
     bool fall_flag;
-    cv::Mat image;
-    cv::VideoCapture cap= *(cv::VideoCapture *) test;
 
-    //0 nose
-    //13 14 kolana
-    //15 16 kostki
+    cv::VideoCapture cap = *(cv::VideoCapture *) test;
 
-    while(true){
-        if (cap.isOpened()) {
-            cap.read(image);
-        }
-        if (image.empty()) break;
+    std::cout << "checkFall starts" << std::endl;
 
+    while (true){
         PoseEngine::Result_ result1, result2;
-        ImageProcessor::getResult(image, result1);
-
         float headHight1, headHight2;
         float kneeHight1, kneeHight2;
         float height1, height2;
 
+        ImageProcessor::getResult(image, result1);
         headHight1 = result1.keypoint_list[0][0].second;
-        kneeHight1 = (result1.keypoint_list[0][13].second + result1.keypoint_list[0][14].second)/2;
-        std::cout<< headHight1<<std::endl;
+        kneeHight1 = (result1.keypoint_list[0][13].second + result1.keypoint_list[0][14].second) / 2;
 
         sleep(1);
-
-        if (cap.isOpened()) {
-            cap.read(image);
-        }
-        if (image.empty()) break;
         ImageProcessor::getResult(image, result2);
-
         headHight2 = result2.keypoint_list[0][0].second;
-        kneeHight2 = (result2.keypoint_list[0][13].second + result2.keypoint_list[0][14].second)/2;
+        kneeHight2 = (result2.keypoint_list[0][13].second + result2.keypoint_list[0][14].second) / 2;
 
-        height1=kneeHight1-headHight1;
-        height2=kneeHight2-headHight2;
-
+        height1 = kneeHight1 - headHight1;
+        height2 = kneeHight2 - headHight2;
 
         std::cout << "headHight1: " << headHight1 << std::endl;
         std::cout << "headHight2: " << headHight2 << std::endl;
         std::cout << "height1: " << height1 << std::endl;
         std::cout << "height2: " << height2 << std::endl;
 
-
         fall_flag = height2 < 0.5 * height1;
 
-        if(fall_flag){
+        if (fall_flag) {
             std::cout << "Fall Detected" << std::endl;
+            sleep(5);
             fall_flag = false;
         }
 
@@ -72,40 +56,42 @@ void* checkFall(void *test){
         }
     }
 
+    std::cout<<"checkFall end"<<std::endl;
+
     return nullptr;
 }
 
-void* display(void *arg){
+void *display(void *arg) {
+    cv::VideoCapture cap = *(cv::VideoCapture *) arg;
 
-    cv::VideoCapture cap= *(cv::VideoCapture *) arg;
+    std::cout << "display start" << std::endl;
 
-    int32_t frame_cnt = 0;
-    for (frame_cnt = 0; cap.isOpened() || frame_cnt < LOOP_NUM_FOR_TIME_MEASUREMENT; frame_cnt++) {
-        /*read image*/
-        cv::Mat image;
+    while (cap.isOpened()) {
         if (cap.isOpened()) {
             cap.read(image);
         }
-        if (image.empty()) break;
+        if (image.empty()) {
+            break;
+        }
 
-        /* Call image processor library */
         ImageProcessor::Result result;
         ImageProcessor::Process(image, result);
 
-        /* Display result */
         cv::imshow("FallDetector", image);
 
-        /* Input key command */
         if (cap.isOpened()) {
             //q
             if (CommonHelper::InputKeyCommand(cap)) break;
         }
-
     }
+
+    std::cout<<"display end"<<std::endl;
+
+    return nullptr;
 }
 
 /*** Function ***/
-int32_t main(int argc, char* argv[]){
+int32_t main(int argc, char *argv[]) {
 
     /* Find source image */
     std::string input_name = (argc > 1) ? argv[1] : DEFAULT_INPUT_IMAGE;
@@ -116,10 +102,14 @@ int32_t main(int argc, char* argv[]){
     }
 
     /* Initialize image processor library */
-    ImageProcessor::InputParam input_param = { WORK_DIR, 4 };
+    ImageProcessor::InputParam input_param = {WORK_DIR, 4};
     if (ImageProcessor::Initialize(input_param) != 0) {
         printf("Initialization Error\n");
         return -1;
+    }
+
+    if (cap.isOpened()) {
+        cap.read(image);
     }
 
     pthread_t displayThread, checkFallThread;
@@ -135,9 +125,9 @@ int32_t main(int argc, char* argv[]){
     checkError = pthread_join(checkFallThread, nullptr);
     assert(!checkError);
 
-    /* Fianlize image processor library */
+
     ImageProcessor::Finalize();
-    cv::waitKey(-1);
+    //cv::waitKey(-1);
 
     return 0;
 }
